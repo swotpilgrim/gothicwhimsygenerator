@@ -3,42 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>American Gothic Camp Character Generator</title>
+    <title>Gothic Camp Character Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>AMERICAN GOTHIC CAMP CHARACTER GENERATOR</h1>
-    
-    <div class="container" id="sections-container">
-        <!-- Sections will be dynamically generated here -->
-    </div>
-    
-    <button id="generate-btn">GENERATE YOUR GOTHIC CAMP CHARACTER!</button>
-    
-    <div id="result">
-        <h2 class="result-title">YOUR AMERICAN GOTHIC CAMP CHARACTER!</h2>
-        <div id="result-content">
-            <!-- Results will be dynamically generated here -->
-        </div>
-        <button id="reset-btn">CREATE ANOTHER CHARACTER</button>
-    </div>
+    <div class="container">
+        <header>
+            <h1>Gothic Camp Character Generator</h1>
+            <div class="neon-sign">DARK WHIMSY & DOMESTICATED MACABRE</div>
+        </header>
 
-    <!-- Add some decorative Gothic elements -->
-    <div class="spider-web" style="top: 50px; right: 10%;"></div>
-    <div class="spider-web" style="bottom: 100px; left: 5%;"></div>
-    <div class="spider-web" style="top: 30%; left: 10%;"></div>
-    <div class="spider-web" style="top: 20%; right: 15%;"></div>
+        <main>
+            <div class="character-form">
+                <div class="form-group">
+                    <label for="characterType">Character Type</label>
+                    <select id="characterType">
+                        <option value="">Select a character type</option>
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <div class="form-group" id="archetypesGroup">
+                    <label for="archetypes">Complete Archetypes (optional)</label>
+                    <select id="archetypes">
+                        <option value="">Create your own custom character</option>
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                    <p class="hint">Select a complete archetype or customize below</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="styleFoundation">Style Foundation</label>
+                    <select id="styleFoundation">
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hairstyle">Hairstyle</label>
+                    <select id="hairstyle">
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <div class="form-sections">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="tops">Top/Upper Garment</label>
+                            <select id="tops">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bottoms">Bottom/Lower Garment</label>
+                            <select id="bottoms">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="dressGroup">
+                            <label for="dresses">Full Outfit/Dress</label>
+                            <select id="dresses">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="outerwear">Outerwear</label>
+                            <select id="outerwear">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="footwear">Footwear</label>
+                            <select id="footwear">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Accessories & Features (select up to 3)</label>
+                    <div class="accessory-container" id="accessoryContainer">
+                        <!-- Checkboxes will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Distinctive Features (select up to 2)</label>
+                    <div class="feature-container" id="featureContainer">
+                        <!-- Checkboxes will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Color Scheme</label>
+                    <div class="color-scheme-container">
+                        <div class="color-row">
+                            <label for="mainColor">Main:</label>
+                            <select id="mainColor">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="color-row">
+                            <label for="secondaryColor">Secondary:</label>
+                            <select id="secondaryColor">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="color-row">
+                            <label for="accentColor">Accent:</label>
+                            <select id="accentColor">
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="color-button">
+                            <button type="button" id="autoColorBtn" class="secondary-button">Auto Pick Gothic Color Scheme</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="generateBtn">Generate Character</button>
+                    <button id="randomizeBtn">Randomize All</button>
+                    <button id="resetBtn">Reset Form</button>
+                </div>
+            </div>
+
+            <div class="character-output">
+                <h2>Your Gothic Character</h2>
+                <div id="characterDescription" class="description-box"></div>
+                <div class="visual-notes">
+                    <h3>Visual Elements</h3>
+                    <ul id="visualElements"></ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Gothic Camp Character Generator | Inspired by American Gothic Camp Aesthetics</p>
+        </footer>
+    </div>
 
     <script src="config.js"></script>
     <script src="descriptions.js"></script>
     <script src="app.js"></script>
-    
-    <footer>
-        <div class="footer-content">
-            <p>© 2025 American Gothic Camp Character Generator</p>
-            <p>Celebrating the darkly whimsical tradition of Gothic Americana</p>
-        </div>
-    </footer>
 </body>
 </html>

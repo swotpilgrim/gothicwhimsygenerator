@@ -1,371 +1,803 @@
-// Configuration - Define all sections, categories and options for American Gothic Camp Character Generator
-const sectionConfig = [
-    {
-        id: 1,
-        title: "BASE CHARACTER TYPE",
-        categories: [
-            { id: "Male Human", label: "Male Human" },
-            { id: "Female Human", label: "Female Human" },
-            { id: "Monster/Non-Human", label: "Monster/Non-Human" },
-            { id: "Hybrid Being", label: "Hybrid Being" }
+// Configuration for the Gothic Camp Character Generator
+const CONFIG = {
+    // Character types
+    characterTypes: [
+        { value: "humanFemale", label: "Gothic Female" },
+        { value: "humanMale", label: "Gothic Male" },
+        { value: "child", label: "Gothic Child" },
+        { value: "monster", label: "Gothic Monster" }
+    ],
+    
+    // Style foundations for each character type
+    styleFoundations: {
+        humanFemale: [
+            { value: "darkElegance", label: "Dark Elegance" },
+            { value: "theatricalMacabre", label: "Theatrical Macabre" },
+            { value: "domesticGothic", label: "Domestic Gothic" },
+            { value: "victorianHaunt", label: "Victorian Haunt" },
+            { value: "occultPractitioner", label: "Occult Practitioner" },
+            { value: "aristocraticDecay", label: "Aristocratic Decay" }
         ],
-        options: {
-            "Male Human": [
-                { id: "Aristocratic Gothic", label: "Aristocratic Gothic (Gomez Addams type)" },
-                { id: "Macabre Scientist/Doctor", label: "Macabre Scientist/Doctor" },
-                { id: "Undertaker/Mortician", label: "Undertaker/Mortician" },
-                { id: "Eccentric Collector", label: "Eccentric Collector" },
-                { id: "Gothic Dandy", label: "Gothic Dandy" }
-            ],
-            "Female Human": [
-                { id: "Elegant Gothic Matriarch", label: "Elegant Gothic Matriarch (Morticia type)" },
-                { id: "Glamorous Horror Hostess", label: "Glamorous Horror Hostess (Elvira/Vampira)" },
-                { id: "Spooky Girl-Next-Door", label: "Spooky Girl-Next-Door" },
-                { id: "Victorian Ghost Hunter", label: "Victorian Ghost Hunter" },
-                { id: "Witchy Homemaker", label: "Witchy Homemaker" }
-            ],
-            "Monster/Non-Human": [
-                { id: "Vampire", label: "Vampire" },
-                { id: "Frankenstein's Creation", label: "Frankenstein's Creation" },
-                { id: "Ghost/Specter", label: "Ghost/Specter" },
-                { id: "Werewolf/Beast", label: "Werewolf/Beast" },
-                { id: "Living Doll/Puppet", label: "Living Doll/Puppet" }
-            ],
-            "Hybrid Being": [
-                { id: "Part-human/Part-machine", label: "Part-human/Part-machine" },
-                { id: "Living-Dead", label: "Living-Dead" },
-                { id: "Human with monster features", label: "Human with monster features" },
-                { id: "Transformed human", label: "Transformed human" },
-                { id: "Possessed object/costume", label: "Possessed object/costume" }
-            ]
-        }
+        humanMale: [
+            { value: "gothicPatriarch", label: "Gothic Patriarch" },
+            { value: "macabreScientist", label: "Macabre Scientist" },
+            { value: "victorianGentleman", label: "Victorian Gentleman" },
+            { value: "theatricalHost", label: "Theatrical Host" },
+            { value: "funeraryProfessional", label: "Funerary Professional" },
+            { value: "eccentricCollector", label: "Eccentric Collector" }
+        ],
+        child: [
+            { value: "precocious", label: "Precocious Gothic" },
+            { value: "hauntedChild", label: "Haunted Child" },
+            { value: "miniatureScholar", label: "Miniature Scholar" },
+            { value: "peculiarInnocent", label: "Peculiar Innocent" },
+            { value: "tinyMacabre", label: "Tiny Macabre" },
+            { value: "omenChild", label: "Omen Child" }
+        ],
+        monster: [
+            { value: "gentleAbomination", label: "Gentle Abomination" },
+            { value: "elegantFiend", label: "Elegant Fiend" },
+            { value: "scientificAnomaly", label: "Scientific Anomaly" },
+            { value: "folkloreEntity", label: "Folklore Entity" },
+            { value: "spectralPresence", label: "Spectral Presence" },
+            { value: "transformedBeing", label: "Transformed Being" }
+        ]
     },
-    {
-        id: 2,
-        title: "PHYSICAL CHARACTERISTICS",
-        categories: [
-            { id: "Complexion", label: "Complexion" },
-            { id: "Hair Style", label: "Hair Style" },
-            { id: "Body Type", label: "Body Type" },
-            { id: "Distinctive Feature", label: "Distinctive Feature" }
+    
+    // Hairstyles for each character type
+    hairstyles: {
+        humanFemale: [
+            { value: "midnightWaves", label: "Midnight Waves" },
+            { value: "towering", label: "Towering Updo" },
+            { value: "victorianCoils", label: "Victorian Coils" },
+            { value: "dramaticStreak", label: "Dramatic White Streak" },
+            { value: "sharpBob", label: "Sharp Gothic Bob" },
+            { value: "raptureRaven", label: "Rapture Raven" },
+            { value: "edwardian", label: "Edwardian Elegance" },
+            { value: "vintageWaves", label: "Vintage Horror Waves" }
         ],
-        options: {
-            "Complexion": [
-                { id: "Pale", label: "Pale" },
-                { id: "Ashen", label: "Ashen" },
-                { id: "Green-tinted", label: "Green-tinted" },
-                { id: "Blue-tinted", label: "Blue-tinted" },
-                { id: "Normal with dramatic makeup", label: "Normal with dramatic makeup" }
-            ],
-            "Hair Style": [
-                { id: "Beehive", label: "Beehive" },
-                { id: "Widow's Peak", label: "Widow's Peak" },
-                { id: "Shock-white streak", label: "Shock-white streak" },
-                { id: "Wild & Unkempt", label: "Wild & Unkempt" },
-                { id: "Slicked-back", label: "Slicked-back" }
-            ],
-            "Body Type": [
-                { id: "Tall & Gaunt", label: "Tall & Gaunt" },
-                { id: "Short & Hunched", label: "Short & Hunched" },
-                { id: "Elegant & Graceful", label: "Elegant & Graceful" },
-                { id: "Imposing & Broad", label: "Imposing & Broad" },
-                { id: "Thin & Wiry", label: "Thin & Wiry" }
-            ],
-            "Distinctive Feature": [
-                { id: "Sunken eyes", label: "Sunken eyes" },
-                { id: "Pointed ears", label: "Pointed ears" },
-                { id: "Unusual teeth", label: "Unusual teeth" },
-                { id: "Dramatic eyebrows", label: "Dramatic eyebrows" },
-                { id: "Visible scars", label: "Visible scars" }
-            ]
-        }
+        humanMale: [
+            { value: "slickedBack", label: "Slicked-back Darkness" },
+            { value: "dramaticPeak", label: "Dramatic Widow's Peak" },
+            { value: "victorianParted", label: "Victorian Side Part" },
+            { value: "wildProfessor", label: "Wild Professor" },
+            { value: "silentFilm", label: "Silent Film Styling" },
+            { value: "dignifiedGray", label: "Dignified Gray Temples" },
+            { value: "romanticWaves", label: "Romantic Dark Waves" },
+            { value: "undercut", label: "Gothic Undercut" }
+        ],
+        child: [
+            { value: "severePigtails", label: "Severe Pigtails" },
+            { value: "oldfashionedBob", label: "Old-fashioned Bob" },
+            { value: "miniAdult", label: "Miniature Adult Style" },
+            { value: "preciseCenter", label: "Precisely Centered Part" },
+            { value: "victorianChild", label: "Victorian Child Curls" },
+            { value: "pageboy", label: "Gothic Pageboy" },
+            { value: "babyVamp", label: "Baby Vampire Styling" },
+            { value: "ribbonTied", label: "Ribbon-Tied Style" }
+        ],
+        monster: [
+            { value: "unnaturalForm", label: "Unnatural Form" },
+            { value: "partialBald", label: "Partial Baldness" },
+            { value: "laboratoryExperiment", label: "Laboratory Experiment" },
+            { value: "wildAnimal", label: "Wild Animal-like" },
+            { value: "floatingEthereal", label: "Floating Ethereal" },
+            { value: "electricShock", label: "Electric Shock Style" },
+            { value: "ancient", label: "Ancient Styling" },
+            { value: "phantomWisp", label: "Phantom Wisp" }
+        ]
     },
-    {
-        id: 3,
-        title: "COSTUME BASE",
-        categories: [
-            { id: "Victorian", label: "Victorian-inspired" },
-            { id: "1950s", label: "1950s Suburban" },
-            { id: "Funeral", label: "Funeral Chic" },
-            { id: "Horror Show", label: "Horror Show Host" },
-            { id: "Carnival", label: "Carnival/Circus" }
+    
+    // Upper garments for each character type  
+    tops: {
+        humanFemale: [
+            { value: "victorianBlouse", label: "Victorian Blouse" },
+            { value: "strictCorset", label: "Strict Corset" },
+            { value: "elegantBodysuit", label: "Elegant Gothic Bodysuit" },
+            { value: "brocadeBodice", label: "Brocade Bodice" },
+            { value: "theatricalTop", label: "Theatrical Top" },
+            { value: "highCollarLace", label: "High-Collar Lace Blouse" },
+            { value: "cameoEmbellished", label: "Cameo-Embellished Top" },
+            { value: "poeticSleeves", label: "Poetic Sleeve Blouse" },
+            { value: "domesticMacabre", label: "Domestic Macabre Top" },
+            { value: "stagePerformer", label: "Stage Performer Top" }
         ],
-        options: {
-            "Victorian": [
-                { id: "High-collar shirt/blouse", label: "High-collar shirt/blouse" },
-                { id: "Corseted dress", label: "Corseted dress" },
-                { id: "Waistcoat with pocket watch", label: "Waistcoat with pocket watch" },
-                { id: "Long trailing gown", label: "Long trailing gown" },
-                { id: "Velvet dinner jacket", label: "Velvet dinner jacket" }
-            ],
-            "1950s": [
-                { id: "Pastel dress with macabre details", label: "Pastel dress with macabre details" },
-                { id: "Suburban suit with strange tie", label: "Suburban suit with strange tie" },
-                { id: "Letterman jacket with occult patches", label: "Letterman jacket with occult patches" },
-                { id: "Housewife apron with potion bottles", label: "Housewife apron with potion bottles" },
-                { id: "Greaser outfit with supernatural twist", label: "Greaser outfit with supernatural twist" }
-            ],
-            "Funeral": [
-                { id: "Black suit with silver accents", label: "Black suit with silver accents" },
-                { id: "Mourning dress and veil", label: "Mourning dress and veil" },
-                { id: "Undertaker's formal wear", label: "Undertaker's formal wear" },
-                { id: "Victorian mourning jewelry", label: "Victorian mourning jewelry" },
-                { id: "Funeral director coat", label: "Funeral director coat" }
-            ],
-            "Horror Show": [
-                { id: "Revealing black gown", label: "Revealing black gown" },
-                { id: "Dramatic cape and costume", label: "Dramatic cape and costume" },
-                { id: "Tuxedo with blood-red details", label: "Tuxedo with blood-red details" },
-                { id: "Gothic lingerie with robe", label: "Gothic lingerie with robe" },
-                { id: "Stage magician outfit", label: "Stage magician outfit" }
-            ],
-            "Carnival": [
-                { id: "Ringmaster outfit", label: "Ringmaster outfit" },
-                { id: "Fortune teller robes", label: "Fortune teller robes" },
-                { id: "Striped performer suit", label: "Striped performer suit" },
-                { id: "Contortionist costume", label: "Contortionist costume" },
-                { id: "Sinister clown attire", label: "Sinister clown attire" }
-            ]
-        }
+        humanMale: [
+            { value: "victorianShirt", label: "Victorian Shirt" },
+            { value: "frockCoat", label: "Frock Coat Upper" },
+            { value: "highCollar", label: "High-Collared Shirt" },
+            { value: "brooding", label: "Brooding Poet Shirt" },
+            { value: "embellishedWaistcoat", label: "Embellished Waistcoat" },
+            { value: "laboratoryJacket", label: "Laboratory Jacket" },
+            { value: "funeraryFormal", label: "Funerary Formal Upper" },
+            { value: "theatricalHost", label: "Theatrical Host Shirt" },
+            { value: "strangeSuburban", label: "Strange Suburban Shirt" },
+            { value: "antiquarian", label: "Antiquarian Top" }
+        ],
+        child: [
+            { value: "miniatureFormal", label: "Miniature Formal Top" },
+            { value: "schoolUniform", label: "Gothic School Uniform Top" },
+            { value: "victorianChild", label: "Victorian Child's Shirt" },
+            { value: "tinyTux", label: "Tiny Tuxedo Shirt" },
+            { value: "overdressed", label: "Eerily Overdressed Upper" },
+            { value: "sailorMacabre", label: "Sailor Macabre Top" },
+            { value: "puffSleeve", label: "Puff Sleeve Horror" },
+            { value: "morticianMini", label: "Mini Mortician Upper" },
+            { value: "hauntedOrphan", label: "Haunted Orphan Shirt" },
+            { value: "precociousGothic", label: "Precocious Gothic Top" }
+        ],
+        monster: [
+            { value: "laboratoryScraps", label: "Laboratory Scraps Top" },
+            { value: "partlyHuman", label: "Partly Human Upper" },
+            { value: "straitLaced", label: "Strait-Laced Restraint Top" },
+            { value: "elegantInhuman", label: "Elegant Inhuman Garment" },
+            { value: "ancientWrappings", label: "Ancient Wrappings Upper" },
+            { value: "scientificSubject", label: "Scientific Subject Shirt" },
+            { value: "transformativeUpper", label: "Transformative Upper Garment" },
+            { value: "spectralUpper", label: "Spectral Upper Form" },
+            { value: "victorianMonster", label: "Victorian Monster Shirt" },
+            { value: "ceremonyAttire", label: "Dark Ceremony Attire" }
+        ]
     },
-    {
-        id: 4,
-        title: "COSTUME DETAILS",
-        categories: [
-            { id: "Color Scheme", label: "Color Scheme" },
-            { id: "Pattern", label: "Pattern" },
-            { id: "Fabric", label: "Fabric" },
-            { id: "Neckline", label: "Neckline/Collar" },
-            { id: "Silhouette", label: "Silhouette" }
+    
+    // Lower garments for each character type
+    bottoms: {
+        humanFemale: [
+            { value: "fullLength", label: "Full-Length Gothic Skirt" },
+            { value: "bustleBack", label: "Bustle-Back Skirt" },
+            { value: "lacePaneled", label: "Lace-Paneled Skirt" },
+            { value: "victorianTrousers", label: "Victorian Trousers" },
+            { value: "theatricalBottom", label: "Theatrical Bottom" },
+            { value: "darkPencil", label: "Dark Pencil Skirt" },
+            { value: "layeredRuffles", label: "Layered Ruffle Skirt" },
+            { value: "highWaisted", label: "High-Waisted Gothic Bottom" },
+            { value: "domesticMacabre", label: "Domestic Macabre Bottom" },
+            { value: "performerLeggings", label: "Performer Leggings" }
         ],
-        options: {
-            "Color Scheme": [
-                { id: "Black & White with red accent", label: "Black & White with red accent" },
-                { id: "Purple & black", label: "Purple & black" },
-                { id: "Green & black", label: "Green & black" },
-                { id: "All black with silver details", label: "All black with silver details" },
-                { id: "Blood red & charcoal", label: "Blood red & charcoal" }
-            ],
-            "Pattern": [
-                { id: "Stripes", label: "Stripes" },
-                { id: "Spider webs", label: "Spider webs" },
-                { id: "Bats", label: "Bats" },
-                { id: "Coffin shapes", label: "Coffin shapes" },
-                { id: "Skulls and bones", label: "Skulls and bones" }
-            ],
-            "Fabric": [
-                { id: "Velvet", label: "Velvet" },
-                { id: "Satin", label: "Satin" },
-                { id: "Lace", label: "Lace" },
-                { id: "Leather", label: "Leather" },
-                { id: "Cobweb-thin material", label: "Cobweb-thin material" }
-            ],
-            "Neckline": [
-                { id: "High Victorian", label: "High Victorian" },
-                { id: "Plunging", label: "Plunging" },
-                { id: "Bat-winged", label: "Bat-winged" },
-                { id: "Jagged", label: "Jagged" },
-                { id: "Cravat/Ascot", label: "Cravat/Ascot" }
-            ],
-            "Silhouette": [
-                { id: "Sharp-shouldered", label: "Sharp-shouldered" },
-                { id: "Flowing", label: "Flowing" },
-                { id: "Constricted", label: "Constricted" },
-                { id: "Dramatically oversized", label: "Dramatically oversized" },
-                { id: "Asymmetrical", label: "Asymmetrical" }
-            ]
-        }
+        humanMale: [
+            { value: "victorianTrousers", label: "Victorian Trousers" },
+            { value: "highWaisted", label: "High-Waisted Formal Pants" },
+            { value: "tailoredStripes", label: "Tailored Striped Pants" },
+            { value: "funeraryBottom", label: "Funerary Formal Bottom" },
+            { value: "scientist", label: "Scientific Gentleman Pants" },
+            { value: "darkRiding", label: "Dark Riding Pants" },
+            { value: "eccentric", label: "Eccentric Pattern Pants" },
+            { value: "theatricalBottom", label: "Theatrical Host Bottom" },
+            { value: "suburbanStrange", label: "Suburban Strange Pants" },
+            { value: "antiqueLower", label: "Antique Style Lower" }
+        ],
+        child: [
+            { value: "miniPleat", label: "Mini Pleated Skirt" },
+            { value: "shortPants", label: "Gothic Short Pants" },
+            { value: "schoolUniform", label: "Gothic School Uniform Bottom" },
+            { value: "victorianChild", label: "Victorian Child's Bottom" },
+            { value: "tinyFormal", label: "Tiny Formal Bottom" },
+            { value: "precociousPants", label: "Precocious Gothic Pants" },
+            { value: "hauntedOrphan", label: "Haunted Orphan Bottom" },
+            { value: "miniMortician", label: "Mini Mortician Bottom" },
+            { value: "peculiarPleats", label: "Peculiarly Pleated Bottom" },
+            { value: "perfectLittle", label: "Perfect Little Horror Bottom" }
+        ],
+        monster: [
+            { value: "stitchedLower", label: "Stitched-Together Bottom" },
+            { value: "laboratoryIssue", label: "Laboratory-Issue Pants" },
+            { value: "tattered", label: "Elegantly Tattered Lower" },
+            { value: "transformative", label: "Transformative Lower Half" },
+            { value: "ancientWrappings", label: "Ancient Wrapped Lower" },
+            { value: "partlyInhuman", label: "Partly Inhuman Bottom" },
+            { value: "ghostlyLower", label: "Ghostly Lower Manifestation" },
+            { value: "anomalousPants", label: "Anomalous Entity Pants" },
+            { value: "victorianMonster", label: "Victorian Monster Bottom" },
+            { value: "folkloreEntity", label: "Folklore Entity Lower" }
+        ]
     },
-    {
-        id: 5,
-        title: "ACCESSORIES",
-        categories: [
-            { id: "Jewelry", label: "Jewelry" },
-            { id: "Props", label: "Props" },
-            { id: "Companion", label: "Companion" },
-            { id: "Footwear", label: "Footwear" },
-            { id: "Headwear", label: "Headwear" }
+    
+    // Full Outfits/Dresses
+    dresses: {
+        humanFemale: [
+            { value: "victorianMourning", label: "Victorian Mourning Dress" },
+            { value: "elegantGothic", label: "Elegant Gothic Full Gown" },
+            { value: "theatricalGown", label: "Theatrical Performance Gown" },
+            { value: "domesticMacabre", label: "Domestic Macabre Dress" },
+            { value: "highCollarFull", label: "High-Collared Full Dress" },
+            { value: "corseted", label: "Elaborately Corseted Gown" },
+            { value: "occultCeremony", label: "Occult Ceremony Dress" },
+            { value: "aristocraticDecay", label: "Aristocratic Decay Gown" },
+            { value: "hostessDress", label: "Gothic Hostess Dress" },
+            { value: "darkBridal", label: "Dark Bridal Ensemble" }
         ],
-        options: {
-            "Jewelry": [
-                { id: "Amulet/Pendant", label: "Amulet/Pendant" },
-                { id: "Skull pins", label: "Skull pins" },
-                { id: "Bat earrings", label: "Bat earrings" },
-                { id: "Spider brooches", label: "Spider brooches" },
-                { id: "Bone-crafted rings", label: "Bone-crafted rings" }
-            ],
-            "Props": [
-                { id: "Unusual weapon", label: "Unusual weapon" },
-                { id: "Musical instrument", label: "Musical instrument" },
-                { id: "Specimen jar", label: "Specimen jar" },
-                { id: "Potion bottle", label: "Potion bottle" },
-                { id: "Antique book", label: "Antique book" }
-            ],
-            "Companion": [
-                { id: "Pet spider/bat", label: "Pet spider/bat" },
-                { id: "Disembodied hand", label: "Disembodied hand" },
-                { id: "Miniature monster", label: "Miniature monster" },
-                { id: "Ghostly presence", label: "Ghostly presence" },
-                { id: "Sentient shadow", label: "Sentient shadow" }
-            ],
-            "Footwear": [
-                { id: "Pointed boots", label: "Pointed boots" },
-                { id: "Platform shoes", label: "Platform shoes" },
-                { id: "Victorian lace-ups", label: "Victorian lace-ups" },
-                { id: "Mismatched", label: "Mismatched" },
-                { id: "Ballet slippers", label: "Ballet slippers" }
-            ],
-            "Headwear": [
-                { id: "Tiny hat", label: "Tiny hat" },
-                { id: "Dramatic veil", label: "Dramatic veil" },
-                { id: "Unusual wig", label: "Unusual wig" },
-                { id: "Gothic headpiece", label: "Gothic headpiece" },
-                { id: "Top hat", label: "Top hat" }
-            ]
-        }
+        humanMale: [
+            { value: "victorianFull", label: "Victorian Full Suit" },
+            { value: "funeraryDirector", label: "Funerary Director Ensemble" },
+            { value: "scientistComplete", label: "Mad Scientist Complete Outfit" },
+            { value: "patriarchSuit", label: "Gothic Patriarch Suit" },
+            { value: "theatricalHost", label: "Theatrical Host Ensemble" },
+            { value: "occultMaster", label: "Occult Master Robes" },
+            { value: "aristocraticDecay", label: "Aristocratic Decay Suit" },
+            { value: "vintageHorror", label: "Vintage Horror Full Outfit" },
+            { value: "eccentricFull", label: "Eccentric Full Costume" },
+            { value: "antiqueCollector", label: "Antique Collector Ensemble" }
+        ],
+        child: [
+            { value: "schoolUniform", label: "Gothic School Uniform" },
+            { value: "miniatureAdult", label: "Miniature Adult Formal" },
+            { value: "victorianChild", label: "Victorian Child's Outfit" },
+            { value: "hauntedOrphan", label: "Haunted Orphan Ensemble" },
+            { value: "funeralAttendee", label: "Funeral Attendee Outfit" },
+            { value: "peculiarSunday", label: "Peculiar Sunday Best" },
+            { value: "tinyMacabre", label: "Tiny Macabre Ensemble" },
+            { value: "ceremonyChild", label: "Ceremony Child Outfit" },
+            { value: "omenBearer", label: "Omen Bearer Dress" },
+            { value: "precociousScholar", label: "Precocious Scholar Ensemble" }
+        ],
+        monster: [
+            { value: "laboratorySpecimen", label: "Laboratory Specimen Outfit" },
+            { value: "victorianMonster", label: "Victorian Monster Ensemble" },
+            { value: "elegantFiend", label: "Elegant Fiend Full Dress" },
+            { value: "transformingCostume", label: "Transforming Costume" },
+            { value: "folkloreAttire", label: "Folklore Entity Attire" },
+            { value: "scientificMisfit", label: "Scientific Misfit Garb" },
+            { value: "ancientWrapped", label: "Ancient Wrapped Full Body" },
+            { value: "ghostlyManifestation", label: "Ghostly Manifestation Form" },
+            { value: "creatureElegance", label: "Creature Elegance Outfit" },
+            { value: "ritualEntity", label: "Ritual Entity Dress" }
+        ]
     },
-    {
-        id: 6,
-        title: "DISTINCTIVE VISUAL FEATURES",
-        categories: [
-            { id: "Face", label: "Face Features" },
-            { id: "Body", label: "Body Features" },
-            { id: "Supernatural", label: "Supernatural Elements" },
-            { id: "Physical Oddity", label: "Physical Oddity" },
-            { id: "Movement", label: "Movement Style" }
+    
+    // Outerwear for each character type
+    outerwear: {
+        humanFemale: [
+            { value: "victorianCape", label: "Victorian Mourning Cape" },
+            { value: "laceShawl", label: "Gothic Lace Shawl" },
+            { value: "structuredJacket", label: "Structured Gothic Jacket" },
+            { value: "theatricalCape", label: "Theatrical Cape" },
+            { value: "domesticCardigan", label: "Domestic Gothic Cardigan" },
+            { value: "funeralCoat", label: "Funeral Attendance Coat" },
+            { value: "occultRobe", label: "Occult Ceremony Robe" },
+            { value: "decayingCoat", label: "Decaying Aristocratic Coat" },
+            { value: "velvetWrap", label: "Velvet Draped Wrap" },
+            { value: "performerJacket", label: "Performer Show Jacket" }
         ],
-        options: {
-            "Face": [
-                { id: "Dramatic widow's peak", label: "Dramatic widow's peak" },
-                { id: "Pencil-thin mustache", label: "Pencil-thin mustache" },
-                { id: "One white streak in hair", label: "One white streak in hair" },
-                { id: "Unnaturally perfect teeth", label: "Unnaturally perfect teeth" },
-                { id: "Mismatched eye colors", label: "Mismatched eye colors" }
-            ],
-            "Body": [
-                { id: "Unusually long fingers", label: "Unusually long fingers" },
-                { id: "Impossibly thin waist", label: "Impossibly thin waist" },
-                { id: "Elongated neck", label: "Elongated neck" },
-                { id: "Spider-like eyelashes", label: "Spider-like eyelashes" },
-                { id: "Talon-like fingernails", label: "Talon-like fingernails" }
-            ],
-            "Supernatural": [
-                { id: "Shadows move independently", label: "Shadows move independently" },
-                { id: "Slightly translucent skin", label: "Slightly translucent skin" },
-                { id: "Floating objects around them", label: "Floating objects around them" },
-                { id: "Occasional manifestation of powers", label: "Occasional manifestation of powers" },
-                { id: "Changes appearance in mirrors", label: "Changes appearance in mirrors" }
-            ],
-            "Physical Oddity": [
-                { id: "Visible stitches on skin", label: "Visible stitches on skin" },
-                { id: "Partially mechanical parts", label: "Partially mechanical parts" },
-                { id: "Extra finger or appendage", label: "Extra finger or appendage" },
-                { id: "Scales on parts of body", label: "Scales on parts of body" },
-                { id: "Hair that defies gravity", label: "Hair that defies gravity" }
-            ],
-            "Movement": [
-                { id: "Glides instead of walks", label: "Glides instead of walks" },
-                { id: "Jerky puppet-like motions", label: "Jerky puppet-like motions" },
-                { id: "Unnaturally fluid movements", label: "Unnaturally fluid movements" },
-                { id: "Appears in places impossibly quickly", label: "Appears in places impossibly quickly" },
-                { id: "Flits like a bat/insect", label: "Flits like a bat/insect" }
-            ]
-        }
+        humanMale: [
+            { value: "victorianOvercoat", label: "Victorian Overcoat" },
+            { value: "funeraryJacket", label: "Funerary Professional Jacket" },
+            { value: "labCoat", label: "Scientific Laboratory Coat" },
+            { value: "capeCoat", label: "Caped Overcoat" },
+            { value: "theatricalJacket", label: "Theatrical Host Jacket" },
+            { value: "smokingJacket", label: "Gothic Smoking Jacket" },
+            { value: "occultRobe", label: "Occult Master Robe" },
+            { value: "aristocraticCoat", label: "Aristocratic Coat" },
+            { value: "suburbiaStrange", label: "Strangely Suburban Coat" },
+            { value: "collectorJacket", label: "Collector's Jacket" }
+        ],
+        child: [
+            { value: "miniCape", label: "Miniature Cape" },
+            { value: "schoolCoat", label: "Gothic School Coat" },
+            { value: "victorianChild", label: "Victorian Child's Coat" },
+            { value: "orphanOverwear", label: "Orphan Hand-Me-Down Coat" },
+            { value: "funeralCapelet", label: "Funeral Capelet" },
+            { value: "tinyLayers", label: "Tiny Layered Outerwear" },
+            { value: "macabreSweater", label: "Macabre Child's Sweater" },
+            { value: "precocious", label: "Precociously Formal Coat" },
+            { value: "miniMortician", label: "Mini Mortician Jacket" },
+            { value: "omenCape", label: "Omen Child Cape" }
+        ],
+        monster: [
+            { value: "laboratoryDrape", label: "Laboratory Drape" },
+            { value: "stitchedCoat", label: "Stitched-Together Coat" },
+            { value: "transformativeCloak", label: "Transformative Cloak" },
+            { value: "victorianlnhuman", label: "Victorian Inhuman Coat" },
+            { value: "ancientShroud", label: "Ancient Shroud" },
+            { value: "scientificWrapping", label: "Scientific Specimen Wrapping" },
+            { value: "ghostlyAura", label: "Ghostly Aura Outerwear" },
+            { value: "ceremonyRobe", label: "Dark Ceremony Robe" },
+            { value: "elegantMonster", label: "Elegant Monster Coat" },
+            { value: "folkloreWrap", label: "Folklore Entity Wrap" }
+        ]
     },
-    {
-        id: 7,
-        title: "PERSONALITY TRAITS",
-        categories: [
-            { id: "Primary Mood", label: "Primary Mood" },
-            { id: "Social Style", label: "Social Style" },
-            { id: "Strange Habit", label: "Strange Habit" },
-            { id: "Speech Pattern", label: "Speech Pattern" },
-            { id: "Hidden Aspect", label: "Hidden Aspect" }
+    
+    // Footwear for each character type
+    footwear: {
+        humanFemale: [
+            { value: "victorianBoots", label: "Victorian Lace-Up Boots" },
+            { value: "gothicHeels", label: "Gothic Heeled Shoes" },
+            { value: "mourningBoots", label: "Mourning Ceremony Boots" },
+            { value: "theatricalShoes", label: "Theatrical Performance Shoes" },
+            { value: "domesticGothic", label: "Domestic Gothic Footwear" },
+            { value: "occultRitual", label: "Occult Ritual Shoes" },
+            { value: "aristocraticDecay", label: "Aristocratic Decay Footwear" },
+            { value: "poeticWander", label: "Poetic Wanderer Boots" },
+            { value: "performerFootwear", label: "Performer Show Footwear" },
+            { value: "lacedAnkle", label: "Laced Ankle Boots" }
         ],
-        options: {
-            "Primary Mood": [
-                { id: "Cheerfully Macabre", label: "Cheerfully Macabre" },
-                { id: "Innocently Monstrous", label: "Innocently Monstrous" },
-                { id: "Dramatically Melancholic", label: "Dramatically Melancholic" },
-                { id: "Eerily Polite", label: "Eerily Polite" },
-                { id: "Domestically Bizarre", label: "Domestically Bizarre" }
-            ],
-            "Social Style": [
-                { id: "Uncomfortably Close-Talking", label: "Uncomfortably Close-Talking" },
-                { id: "Theatrically Romantic", label: "Theatrically Romantic" },
-                { id: "Oblivious to Social Norms", label: "Oblivious to Social Norms" },
-                { id: "Formal to Absurdity", label: "Formal to Absurdity" },
-                { id: "Inappropriately Flirtatious", label: "Inappropriately Flirtatious" }
-            ],
-            "Strange Habit": [
-                { id: "Collects Unsettling Items", label: "Collects Unsettling Items" },
-                { id: "Speaks to Invisible Entities", label: "Speaks to Invisible Entities" },
-                { id: "Tastes Everything", label: "Tastes Everything" },
-                { id: "Writes Poetry about Death", label: "Writes Poetry about Death" },
-                { id: "Predicts Doom Constantly", label: "Predicts Doom Constantly" }
-            ],
-            "Speech Pattern": [
-                { id: "Victorian Formality", label: "Victorian Formality" },
-                { id: "Whispers Dramatically", label: "Whispers Dramatically" },
-                { id: "Speaks in Riddles", label: "Speaks in Riddles" },
-                { id: "Uses Outdated Slang", label: "Uses Outdated Slang" },
-                { id: "Unexpectedly Loud", label: "Unexpectedly Loud" }
-            ],
-            "Hidden Aspect": [
-                { id: "Secret Normalcy", label: "Secret Normalcy" },
-                { id: "Surprising Vulnerability", label: "Surprising Vulnerability" },
-                { id: "Unusual Expertise", label: "Unusual Expertise" },
-                { id: "Cursed History", label: "Cursed History" },
-                { id: "Supernatural Power", label: "Supernatural Power" }
-            ]
-        }
+        humanMale: [
+            { value: "victorianBoots", label: "Victorian Gentleman's Boots" },
+            { value: "funeraryShoes", label: "Funerary Professional Shoes" },
+            { value: "scientificBoots", label: "Scientific Explorer Boots" },
+            { value: "patriarchFootwear", label: "Patriarch Formal Footwear" },
+            { value: "theatricalShoes", label: "Theatrical Host Shoes" },
+            { value: "occultRitual", label: "Occult Ritual Boots" },
+            { value: "aristocraticDecay", label: "Aristocratic Decay Shoes" },
+            { value: "suburbanStrange", label: "Strangely Suburban Shoes" },
+            { value: "collectorBoots", label: "Antique Collector Boots" },
+            { value: "eccentricShoes", label: "Eccentric Formal Shoes" }
+        ],
+        child: [
+            { value: "miniBoots", label: "Miniature Gothic Boots" },
+            { value: "schoolShoes", label: "Gothic School Shoes" },
+            { value: "victorianChild", label: "Victorian Child's Shoes" },
+            { value: "orphanFootwear", label: "Orphan Hand-Me-Down Shoes" },
+            { value: "funeralMary", label: "Funeral Mary Janes" },
+            { value: "tinyFormal", label: "Tiny Formal Footwear" },
+            { value: "macabreOxfords", label: "Macabre Child's Oxfords" },
+            { value: "precocious", label: "Precociously Adult Shoes" },
+            { value: "peculiarSocks", label: "Peculiar Socks with Shoes" },
+            { value: "omenFootprints", label: "Omen Child Footprints" }
+        ],
+        monster: [
+            { value: "laboratoryIssue", label: "Laboratory-Issue Footwear" },
+            { value: "misshapen", label: "Misshapen Monster Boots" },
+            { value: "transformative", label: "Transformative Feet" },
+            { value: "victorianInhuman", label: "Victorian Inhuman Shoes" },
+            { value: "ancientWraps", label: "Ancient Foot Wrappings" },
+            { value: "scientificSpecimen", label: "Scientific Specimen Boots" },
+            { value: "ghostlyFeet", label: "Ghostly Feet Manifestation" },
+            { value: "etherealHover", label: "Ethereal Hovering (No Shoes)" },
+            { value: "elegantMonster", label: "Elegant Monster Footwear" },
+            { value: "folkloreFootwear", label: "Folklore Entity Feet" }
+        ]
     },
-    {
-        id: 8,
-        title: "RELATIONSHIP TO NORMAL SOCIETY",
-        categories: [
-            { id: "Social Position", label: "Social Position" },
-            { id: "Community Role", label: "Community Role" },
-            { id: "Normal Interaction", label: "Interaction with Normals" },
-            { id: "Family Situation", label: "Family Situation" },
-            { id: "Residence", label: "Residence" }
+    
+    // Accessories for each character type
+    accessories: {
+        humanFemale: [
+            { value: "cameoChoker", label: "Cameo Choker" },
+            { value: "laceGloves", label: "Black Lace Gloves" },
+            { value: "victorianFan", label: "Victorian Mourning Fan" },
+            { value: "pocketWatch", label: "Ladies' Pocket Watch" },
+            { value: "hauntedJewelry", label: "Haunted Heirloom Jewelry" },
+            { value: "raven", label: "Raven Companion" },
+            { value: "parasol", label: "Gothic Parasol" },
+            { value: "brooches", label: "Victorian Mourning Brooch" },
+            { value: "perfumeVial", label: "Mysterious Perfume Vial" },
+            { value: "ritualKit", label: "Occult Ritual Kit" },
+            { value: "peculiarPet", label: "Peculiar Pet/Companion" },
+            { value: "veil", label: "Mourning Veil" }
         ],
-        options: {
-            "Social Position": [
-                { id: "Respected but Feared", label: "Respected but Feared" },
-                { id: "Outcast by Choice", label: "Outcast by Choice" },
-                { id: "Secret Society Member", label: "Secret Society Member" },
-                { id: "Local Oddity", label: "Local Oddity" },
-                { id: "Hidden Aristocrat", label: "Hidden Aristocrat" }
-            ],
-            "Community Role": [
-                { id: "Mysterious Benefactor", label: "Mysterious Benefactor" },
-                { id: "Cultural Outsider", label: "Cultural Outsider" },
-                { id: "Keeper of Dark Secrets", label: "Keeper of Dark Secrets" },
-                { id: "Accidental Hero", label: "Accidental Hero" },
-                { id: "Town Black Sheep", label: "Town Black Sheep" }
-            ],
-            "Normal Interaction": [
-                { id: "Attempts Normalcy Badly", label: "Attempts Normalcy Badly" },
-                { id: "Oblivious to Stares", label: "Oblivious to Stares" },
-                { id: "Deliberately Mysterious", label: "Deliberately Mysterious" },
-                { id: "Enjoys Frightening Others", label: "Enjoys Frightening Others" },
-                { id: "Secretly Yearns to Belong", label: "Secretly Yearns to Belong" }
-            ],
-            "Family Situation": [
-                { id: "Entire Family is Strange", label: "Entire Family is Strange" },
-                { id: "Black Sheep of Normal Family", label: "Black Sheep of Normal Family" },
-                { id: "Ancient Bloodline", label: "Ancient Bloodline" },
-                { id: "Created/Adopted Family", label: "Created/Adopted Family" },
-                { id: "Unknown Origin", label: "Unknown Origin" }
-            ],
-            "Residence": [
-                { id: "Decrepit Mansion", label: "Decrepit Mansion" },
-                { id: "Oddly Normal Suburban Home", label: "Oddly Normal Suburban Home" },
-                { id: "Lives in Business/Workplace", label: "Lives in Business/Workplace" },
-                { id: "Mobile/Traveling Home", label: "Mobile/Traveling Home" },
-                { id: "Underground/Hidden Dwelling", label: "Underground/Hidden Dwelling" }
-            ]
-        }
+        humanMale: [
+            { value: "pocketWatch", label: "Gentleman's Pocket Watch" },
+            { value: "walkingCane", label: "Ornate Walking Cane" },
+            { value: "skullTiepin", label: "Skull Tiepin" },
+            { value: "mourningArmband", label: "Mourning Armband" },
+            { value: "labItems", label: "Laboratory Items" },
+            { value: "cravat", label: "Elaborate Cravat" },
+            { value: "gothicGloves", label: "Gothic Gentleman's Gloves" },
+            { value: "unusualSpecimens", label: "Collection of Unusual Specimens" },
+            { value: "peculiarPet", label: "Peculiar Pet/Companion" },
+            { value: "monocle", label: "Tinted Monocle" },
+            { value: "pocketBook", label: "Disturbing Pocket Book" },
+            { value: "ritualKit", label: "Occult Ritual Items" }
+        ],
+        child: [
+            { value: "hauntedDoll", label: "Haunted Doll/Toy" },
+            { value: "ribbons", label: "Morbid Hair Ribbons" },
+            { value: "tinyGloves", label: "Tiny Formal Gloves" },
+            { value: "peculiarPet", label: "Peculiar Pet/Companion" },
+            { value: "schoolItems", label: "Disturbing School Items" },
+            { value: "lollipop", label: "Black Lollipop" },
+            { value: "miniatureWeapon", label: "Miniature 'Weapon'" },
+            { value: "insectCollection", label: "Collection of Insects" },
+            { value: "weirdTrinket", label: "Weird Trinket" },
+            { value: "pocketWatch", label: "Inherited Pocket Watch" },
+            { value: "funeralFlowers", label: "Funeral Flowers" },
+            { value: "spookyBook", label: "Spooky Children's Book" }
+        ],
+        monster: [
+            { value: "chains", label: "Broken Chains/Restraints" },
+            { value: "laboratoryEquipment", label: "Laboratory Equipment" },
+            { value: "bodyBolts", label: "Visible Body Bolts" },
+            { value: "mysteriousAmulet", label: "Mysterious Amulet" },
+            { value: "transformationCharm", label: "Transformation Charm" },
+            { value: "spectralItems", label: "Spectral/Floating Items" },
+            { value: "ancientArtifact", label: "Ancient Artifact" },
+            { value: "unnaturalPet", label: "Unnatural Pet/Familiar" },
+            { value: "cermonialItems", label: "Ceremonial Items" },
+            { value: "monstrosityMark", label: "Mark of Monstrosity" },
+            { value: "scientificAttachments", label: "Scientific Attachments" },
+            { value: "hauntedObject", label: "Haunted Object" }
+        ]
+    },
+    
+    // Distinctive features for each character type
+    features: {
+        humanFemale: [
+            { value: "paleComplexion", label: "Unnaturally Pale Complexion" },
+            { value: "darkCircles", label: "Dramatic Dark Eye Circles" },
+            { value: "redLips", label: "Blood-Red Lips" },
+            { value: "sharplyCut", label: "Sharply Cut Features" },
+            { value: "dramaticEyebrows", label: "Dramatically Arched Eyebrows" },
+            { value: "floatingMovement", label: "Floating Movement Style" },
+            { value: "unnaturalGrace", label: "Unnatural Grace" },
+            { value: "penetratingGaze", label: "Penetrating Gaze" },
+            { value: "agelessAppearance", label: "Ageless Appearance" },
+            { value: "perfectPosture", label: "Perfect Rigid Posture" }
+        ],
+        humanMale: [
+            { value: "paleComplexion", label: "Deathly Pallor" },
+            { value: "gaunt", label: "Gaunt, Hollow Features" },
+            { value: "widowsPeak", label: "Pronounced Widow's Peak" },
+            { value: "burningEyes", label: "Burning/Intense Eyes" },
+            { value: "dramaticShadows", label: "Face Catches Dramatic Shadows" },
+            { value: "formalSpeech", label: "Overly Formal Speech" },
+            { value: "strangeGestures", label: "Strange Gesturing Habits" },
+            { value: "theatricalVoice", label: "Theatrical Voice" },
+            { value: "oddPosture", label: "Odd Posture/Stance" },
+            { value: "unusualSmile", label: "Unusual/Unsettling Smile" }
+        ],
+        child: [
+            { value: "tooAdult", label: "Too-Adult Mannerisms" },
+            { value: "unnaturalStillness", label: "Unnatural Stillness" },
+            { value: "paleSkin", label: "Extremely Pale Skin" },
+            { value: "strangeStare", label: "Strange, Unblinking Stare" },
+            { value: "olderEyes", label: "Eyes Look Much Older" },
+            { value: "creepyVoice", label: "Creepy Sing-Song Voice" },
+            { value: "unusualKnowledge", label: "Unusual Knowledge" },
+            { value: "perfectComposure", label: "Perfect/Unchildlike Composure" },
+            { value: "oddHabits", label: "Odd Repetitive Habits" },
+            { value: "disturbingSmile", label: "Disturbingly Perfect Smile" }
+        ],
+        monster: [
+            { value: "unnaturalSkin", label: "Unnatural Skin Tone/Texture" },
+            { value: "strangeProportions", label: "Strange Body Proportions" },
+            { value: "visibleSutures", label: "Visible Sutures/Seams" },
+            { value: "glowingEyes", label: "Glowing/Unusual Eyes" },
+            { value: "partialTransform", label: "Partial Transformation" },
+            { value: "floatingMovement", label: "Floating/Unnatural Movement" },
+            { value: "animalFeatures", label: "Subtle Animal Features" },
+            { value: "unnaturalVoice", label: "Unnatural Voice" },
+            { value: "spectralAspect", label: "Spectral/Transparent Aspect" },
+            { value: "laboratoryMarks", label: "Laboratory/Experiment Marks" }
+        ]
+    },
+    
+    // Color schemes
+    colors: [
+        { value: "none", label: "None" },
+        { value: "blackRed", label: "Black & Blood Red" },
+        { value: "purpleBlack", label: "Deep Purple & Black" },
+        { value: "midnightBlue", label: "Midnight Blue & Silver" },
+        { value: "allBlack", label: "All Black with Silver Accents" },
+        { value: "darkGreen", label: "Dark Green & Black" },
+        { value: "gothicBurgundy", label: "Burgundy & Charcoal" },
+        { value: "plum", label: "Plum & Black" },
+        { value: "rust", label: "Rust Red & Black" },
+        { value: "teal", label: "Dark Teal & Black" },
+        { value: "victorian", label: "Victorian Mourning (Purple, Black, Gray)" },
+        { value: "cobweb", label: "Cobweb Gray & White" },
+        { value: "bloodSplatter", label: "Black with Blood Splatter Pattern" },
+        { value: "sepia", label: "Sepia & Faded Black" },
+        { value: "deepRed", label: "Deep Red & Gold" },
+        { value: "emeraldBlack", label: "Emerald & Black" },
+        { value: "poisonGreen", label: "Poison Green & Purple" },
+        { value: "antiquePurple", label: "Antique Purple & Aged Gold" },
+        { value: "forestMoss", label: "Forest Green & Moss" },
+        { value: "midnightPurple", label: "Midnight Purple & Silver" },
+        { value: "coffin", label: "Coffin Wood & Brass" },
+        { value: "cryptMarble", label: "Crypt Marble & Verdigris" },
+        { value: "bloodVelvet", label: "Blood Velvet & Tarnished Gold" },
+        { value: "lavendermist", label: "Lavender Mist & Charcoal" },
+        { value: "poisonApple", label: "Poison Apple Red & Forest Green" }
+    ],
+    
+    // Complete character archetypes
+    archetypes: {
+        humanFemale: [
+            { 
+                value: "morticiaType", 
+                label: "Elegant Gothic Matriarch",
+                components: {
+                    style: "darkElegance",
+                    hairstyle: "midnightWaves",
+                    top: "",
+                    bottom: "",
+                    dress: "elegantGothic",
+                    outerwear: "",
+                    footwear: "gothicHeels",
+                    accessories: ["cameoChoker", "laceGloves", "hauntedJewelry"],
+                    features: ["paleComplexion", "unnaturalGrace"]
+                }
+            },
+            { 
+                value: "elviraCaliber", 
+                label: "Theatrical Horror Hostess",
+                components: {
+                    style: "theatricalMacabre",
+                    hairstyle: "towering",
+                    top: "theatricalTop",
+                    bottom: "theatricalBottom",
+                    dress: "",
+                    outerwear: "theatricalCape",
+                    footwear: "theatricalShoes",
+                    accessories: ["redLips", "perfumeVial", "peculiarPet"],
+                    features: ["dramaticEyebrows", "theatricalVoice"]
+                }
+            },
+            { 
+                value: "domesticGothic", 
+                label: "Macabre Homemaker",
+                components: {
+                    style: "domesticGothic",
+                    hairstyle: "vintageWaves",
+                    top: "domesticMacabre",
+                    bottom: "domesticMacabre",
+                    dress: "",
+                    outerwear: "domesticCardigan",
+                    footwear: "domesticGothic",
+                    accessories: ["brooches", "perfumeVial", "peculiarPet"],
+                    features: ["perfectPosture", "unusualSmile"]
+                }
+            },
+            { 
+                value: "victorianLady", 
+                label: "Victorian Gothic Lady",
+                components: {
+                    style: "victorianHaunt",
+                    hairstyle: "victorianCoils",
+                    top: "",
+                    bottom: "",
+                    dress: "victorianMourning",
+                    outerwear: "victorianCape",
+                    footwear: "victorianBoots",
+                    accessories: ["victorianFan", "parasol", "veil"],
+                    features: ["paleComplexion", "perfectPosture"]
+                }
+            },
+            { 
+                value: "occultMistress", 
+                label: "Occult Mistress",
+                components: {
+                    style: "occultPractitioner",
+                    hairstyle: "dramaticStreak",
+                    top: "",
+                    bottom: "",
+                    dress: "occultCeremony",
+                    outerwear: "occultRobe",
+                    footwear: "occultRitual",
+                    accessories: ["ritualKit", "hauntedJewelry", "raven"],
+                    features: ["penetratingGaze", "floatingMovement"]
+                }
+            }
+        ],
+        humanMale: [
+            { 
+                value: "gomezType", 
+                label: "Eccentric Gothic Patriarch",
+                components: {
+                    style: "gothicPatriarch",
+                    hairstyle: "slickedBack",
+                    top: "",
+                    bottom: "",
+                    dress: "patriarchSuit",
+                    outerwear: "",
+                    footwear: "patriarchFootwear",
+                    accessories: ["pocketWatch", "walkingCane", "skullTiepin"],
+                    features: ["theatricalVoice", "strangeGestures"]
+                }
+            },
+            { 
+                value: "scientistType", 
+                label: "Macabre Scientist",
+                components: {
+                    style: "macabreScientist",
+                    hairstyle: "wildProfessor",
+                    top: "laboratoryJacket",
+                    bottom: "scientist",
+                    dress: "",
+                    outerwear: "labCoat",
+                    footwear: "scientificBoots",
+                    accessories: ["labItems", "unusualSpecimens", "monocle"],
+                    features: ["burningEyes", "unusualSmile"]
+                }
+            },
+            { 
+                value: "victorianGent", 
+                label: "Victorian Gentleman",
+                components: {
+                    style: "victorianGentleman",
+                    hairstyle: "victorianParted",
+                    top: "",
+                    bottom: "",
+                    dress: "victorianFull",
+                    outerwear: "victorianOvercoat",
+                    footwear: "victorianBoots",
+                    accessories: ["pocketWatch", "walkingCane", "mourningArmband"],
+                    features: ["paleComplexion", "formalSpeech"]
+                }
+            },
+            { 
+                value: "theatricalHost", 
+                label: "Theatrical Horror Host",
+                components: {
+                    style: "theatricalHost",
+                    hairstyle: "silentFilm",
+                    top: "theatricalHost",
+                    bottom: "theatricalBottom",
+                    dress: "",
+                    outerwear: "theatricalJacket",
+                    footwear: "theatricalShoes",
+                    accessories: ["cravat", "pocketBook", "peculiarPet"],
+                    features: ["dramaticShadows", "theatricalVoice"]
+                }
+            },
+            { 
+                value: "funeralDirector", 
+                label: "Funerary Professional",
+                components: {
+                    style: "funeraryProfessional",
+                    hairstyle: "dignifiedGray",
+                    top: "funeraryFormal",
+                    bottom: "funeraryBottom",
+                    dress: "",
+                    outerwear: "funeraryJacket",
+                    footwear: "funeraryShoes",
+                    accessories: ["pocketWatch", "gothicGloves", "mourningArmband"],
+                    features: ["gaunt", "formalSpeech"]
+                }
+            }
+        ],
+        child: [
+            { 
+                value: "wednesdayType", 
+                label: "Precocious Gothic Child",
+                components: {
+                    style: "precocious",
+                    hairstyle: "severePigtails",
+                    top: "",
+                    bottom: "",
+                    dress: "schoolUniform",
+                    outerwear: "schoolCoat",
+                    footwear: "schoolShoes",
+                    accessories: ["hauntedDoll", "miniatureWeapon", "ribbons"],
+                    features: ["tooAdult", "strangeStare"]
+                }
+            },
+            { 
+                value: "hauntedChildType", 
+                label: "Haunted Child",
+                components: {
+                    style: "hauntedChild",
+                    hairstyle: "oldfashionedBob",
+                    top: "",
+                    bottom: "",
+                    dress: "hauntedOrphan",
+                    outerwear: "orphanOverwear",
+                    footwear: "orphanFootwear",
+                    accessories: ["hauntedDoll", "weirdTrinket", "pocketWatch"],
+                    features: ["paleSkin", "olderEyes"]
+                }
+            },
+            { 
+                value: "miniScholar", 
+                label: "Miniature Gothic Scholar",
+                components: {
+                    style: "miniatureScholar",
+                    hairstyle: "miniAdult",
+                    top: "miniatureFormal",
+                    bottom: "miniMortician",
+                    dress: "",
+                    outerwear: "precocious",
+                    footwear: "precocious",
+                    accessories: ["spookyBook", "tinyGloves", "peculiarPet"],
+                    features: ["unusualKnowledge", "perfectComposure"]
+                }
+            },
+            { 
+                value: "peculiarChild", 
+                label: "Peculiar Gothic Child",
+                components: {
+                    style: "peculiarInnocent",
+                    hairstyle: "preciseCenter",
+                    top: "overdressed",
+                    bottom: "peculiarPleats",
+                    dress: "",
+                    outerwear: "tinyLayers",
+                    footwear: "peculiarSocks",
+                    accessories: ["insectCollection", "schoolItems", "spookyBook"],
+                    features: ["oddHabits", "disturbingSmile"]
+                }
+            },
+            { 
+                value: "omenBearer", 
+                label: "Omen Child",
+                components: {
+                    style: "omenChild",
+                    hairstyle: "victorianChild",
+                    top: "",
+                    bottom: "",
+                    dress: "omenBearer",
+                    outerwear: "omenCape",
+                    footwear: "omenFootprints",
+                    accessories: ["funeralFlowers", "weirdTrinket", "hauntedDoll"],
+                    features: ["unnaturalStillness", "creepyVoice"]
+                }
+            }
+        ],
+        monster: [
+            { 
+                value: "gentleGiant", 
+                label: "Gentle Abomination",
+                components: {
+                    style: "gentleAbomination",
+                    hairstyle: "electricShock",
+                    top: "laboratoryScraps",
+                    bottom: "stitchedLower",
+                    dress: "",
+                    outerwear: "laboratoryDrape",
+                    footwear: "laboratoryIssue",
+                    accessories: ["chains", "bodyBolts", "laboratoryEquipment"],
+                    features: ["visibleSutures", "strangeProportions"]
+                }
+            },
+            { 
+                value: "elegantFiend", 
+                label: "Elegant Fiend",
+                components: {
+                    style: "elegantFiend",
+                    hairstyle: "unnaturalForm",
+                    top: "elegantInhuman",
+                    bottom: "",
+                    dress: "elegantFiend",
+                    outerwear: "elegantMonster",
+                    footwear: "elegantMonster",
+                    accessories: ["mysteriousAmulet", "unnaturalPet", "hauntedObject"],
+                    features: ["glowingEyes", "unnaturalVoice"]
+                }
+            },
+            { 
+                value: "scientificAnomaly", 
+                label: "Scientific Anomaly",
+                components: {
+                    style: "scientificAnomaly",
+                    hairstyle: "laboratoryExperiment",
+                    top: "scientificSubject",
+                    bottom: "laboratoryIssue",
+                    dress: "",
+                    outerwear: "scientificWrapping",
+                    footwear: "scientificSpecimen",
+                    accessories: ["scientificAttachments", "laboratoryEquipment", "bodyBolts"],
+                    features: ["laboratoryMarks", "unnaturalSkin"]
+                }
+            },
+            { 
+                value: "ghostlyPresence", 
+                label: "Spectral Presence",
+                components: {
+                    style: "spectralPresence",
+                    hairstyle: "floatingEthereal",
+                    top: "spectralUpper",
+                    bottom: "ghostlyLower",
+                    dress: "",
+                    outerwear: "ghostlyAura",
+                    footwear: "etherealHover",
+                    accessories: ["spectralItems", "hauntedObject", "ancientArtifact"],
+                    features: ["spectralAspect", "floatingMovement"]
+                }
+            },
+            { 
+                value: "folkloreMonster", 
+                label: "Folklore Entity",
+                components: {
+                    style: "folkloreEntity",
+                    hairstyle: "wildAnimal",
+                    top: "",
+                    bottom: "",
+                    dress: "folkloreAttire",
+                    outerwear: "folkloreWrap",
+                    footwear: "folkloreFootwear",
+                    accessories: ["transformationCharm", "ancientArtifact", "unnaturalPet"],
+                    features: ["animalFeatures", "partialTransform"]
+                }
+            }
+        ]
     }
-];
+};
